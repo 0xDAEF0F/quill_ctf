@@ -5,8 +5,8 @@ libs = ['lib']
 solc = '0.8.18'
 
 [fmt]
-line_length = 180
-int_types = 'short'
+line_length = 120
+int_types = 'long'
 number_underscore = 'thousands'
 wrap_comments = true
 

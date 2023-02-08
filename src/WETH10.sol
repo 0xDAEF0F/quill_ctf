@@ -19,7 +19,7 @@ contract WETH10 is ERC20("Messi Wrapped Ether", "WETH10"), ReentrancyGuard {
         _mint(msg.sender, msg.value);
     }
 
-    function withdraw(uint wad) external nonReentrant {
+    function withdraw(uint256 wad) external nonReentrant {
         Address.sendValue(payable(msg.sender), wad);
         _burn(msg.sender, wad);
     }
@@ -30,8 +30,8 @@ contract WETH10 is ERC20("Messi Wrapped Ether", "WETH10"), ReentrancyGuard {
     }
 
     /// @notice Request a flash loan in ETH
-    function execute(address receiver, uint amount, bytes calldata data) external nonReentrant {
-        uint prevBalance = address(this).balance;
+    function execute(address receiver, uint256 amount, bytes calldata data) external nonReentrant {
+        uint256 prevBalance = address(this).balance;
         Address.functionCallWithValue(receiver, data, amount);
 
         require(address(this).balance >= prevBalance, "flash loan not returned");
